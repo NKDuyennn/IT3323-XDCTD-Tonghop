@@ -1,0 +1,7 @@
+PROGRAM TestScanner;
+(* Day la mot comment
+   nhieu dong ma khong duoc dong 
+VAR x : INTEGER;
+BEGIN
+    x := 5 + 3
+END.

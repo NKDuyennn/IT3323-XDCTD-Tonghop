@@ -1,0 +1,13 @@
+PROGRAM TestBasicType;
+VAR
+    x : INTEGER;
+
+FUNCTION Calculate(a: INTEGER): BOOLEAN;
+BEGIN
+    Calculate := a
+END;
+
+BEGIN
+    x := Calculate(5);
+    CALL WriteI(x)
+END.

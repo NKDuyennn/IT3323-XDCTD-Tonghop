@@ -1,0 +1,7 @@
+PROGRAM IdentTooLong;
+VAR
+  thisisaverylongidentifiername : INTEGER;
+  normalVar : INTEGER;
+BEGIN
+  thisisaverylongidentifiername := 10;
+END.

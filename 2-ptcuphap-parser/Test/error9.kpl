@@ -1,0 +1,12 @@
+PROGRAM TestParam;
+VAR
+    x : INTEGER;
+
+PROCEDURE Process(123 : INTEGER);
+BEGIN
+    CALL WriteI(123)
+END;
+
+BEGIN
+    CALL Process(x)
+END.

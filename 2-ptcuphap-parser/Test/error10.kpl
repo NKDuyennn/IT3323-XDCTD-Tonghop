@@ -1,0 +1,8 @@
+PROGRAM TestStatement;
+VAR
+    x : INTEGER;
+BEGIN
+    x := 5;
+    TYPE newType = INTEGER;
+    CALL WriteI(x)
+END.

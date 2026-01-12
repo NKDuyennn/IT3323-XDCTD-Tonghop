@@ -1,0 +1,12 @@
+PROGRAM TestComparator;
+VAR
+    x : INTEGER;
+    y : INTEGER;
+BEGIN
+    x := 5;
+    y := 10;
+    IF x + y THEN
+        CALL WriteI(x)
+    ELSE
+        CALL WriteI(y)
+END.

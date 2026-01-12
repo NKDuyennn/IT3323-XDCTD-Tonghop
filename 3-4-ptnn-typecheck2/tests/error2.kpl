@@ -1,0 +1,17 @@
+PROGRAM ERROR2; (* Factorial - Modified *)
+   
+VAR N : INTEGER;
+
+(* LỖI: Hàm F có tham số hình thức N : INTEGER *)
+FUNCTION F(N : INTEGER) : INTEGER;
+  BEGIN
+    IF N = 0 THEN F := 1 ELSE F := N * F (N - 1);
+  END;
+
+BEGIN
+  FOR N := 1 TO 7 DO
+    BEGIN
+      CALL WRITELN;
+      CALL WRITEI(F);  (* LỖI: Gọi hàm F không có tham số nhưng hàm cần 1 tham số *)
+    END;
+END. (* Error 2 *)

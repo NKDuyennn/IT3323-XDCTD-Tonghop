@@ -1,0 +1,28 @@
+PROGRAM ERROR1;
+   CONST C1 = 10;
+  	 C2 = 'a';
+         C3 = +C2;  (* LỖI: Thêm dòng này + dùng dấu cộng với hằng CHAR *)
+   TYPE T1 = ARRAY(. 10 .) OF INTEGER;
+   VAR V1 : INTEGER;
+       V2 : ARRAY(. 10 .) OF T1;
+
+   FUNCTION F(P1 : INTEGER; VAR P2 : CHAR) : INTEGER;
+     BEGIN
+       F := C1;
+     END;
+
+   PROCEDURE P(V1 : INTEGER);
+     CONST C1 = 'a';
+           C3 = 10;
+     TYPE T1 = INTEGER;
+          T2 = ARRAY(. 10 .) OF T1;
+     VAR V2 : T2;
+         V3 : CHAR;
+     BEGIN
+	V3 := 'a';
+        V1 := F(C3,V3);
+     END;
+
+BEGIN
+     CALL P(C1);
+END.

@@ -1,0 +1,27 @@
+PROGRAM ERROR3;
+   CONST C1 = 10;
+  	 C2 = 'a';
+   TYPE T1 = ARRAY(. 10 .) OF INTEGER;
+   VAR V1 : INTEGER;
+       V2 : ARRAY(. 10 .) OF T1;
+
+   FUNCTION F(P1 : INTEGER; VAR P2 : CHAR) : INTEGER;
+     BEGIN
+       F := C1;
+     END;
+
+   PROCEDURE P(V1 : INTEGER);
+     CONST C1 = 'a';
+           C3 = 10;
+     TYPE T1 = ARRAY(. 5 .) OF INTEGER;
+          T2 = ARRAY(. 10 .) OF T1;
+     VAR V2 : T2;
+         V3 : CHAR;
+     BEGIN
+	      V3 := 'a';
+        V2(.1.) := V1;  (* LỖI: V2 là mảng 2 chiều nhưng chỉ dùng 1 chỉ số *)
+     END;
+
+BEGIN
+     CALL P(C1);
+END.

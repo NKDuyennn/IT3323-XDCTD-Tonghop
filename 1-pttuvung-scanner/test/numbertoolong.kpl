@@ -1,0 +1,9 @@
+PROGRAM NumberTooLong;
+VAR
+  x : INTEGER;
+BEGIN
+  x := 12345678901;
+  x := 2147483648;
+  x := 99999999999999;
+  x := 2147483647;
+END.

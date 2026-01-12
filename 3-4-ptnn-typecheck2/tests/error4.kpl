@@ -1,0 +1,30 @@
+PROGRAM ERROR4; (* Example 6 - Modified *)
+   CONST C1 = 10;
+  	 C2 = 'a';
+   TYPE T1 = ARRAY(. 10 .) OF INTEGER;
+   VAR V1 : INTEGER;
+       V2 : ARRAY(. 10 .) OF T1;
+
+   (* LỖI: Hàm F có 2 tham số hình thức *)
+   FUNCTION F(P1 : INTEGER; VAR P2 : CHAR) : INTEGER;
+     BEGIN
+       F := C1;
+     END;
+
+   PROCEDURE P(V1 : INTEGER);
+     CONST C1 = 'a';
+           C3 = 10;
+     TYPE T1 = INTEGER;
+          T2 = ARRAY(. 10 .) OF T1;
+     VAR V2 : T2;
+         V3 : CHAR;
+         V4 : INTEGER;
+     BEGIN
+	V3 := 'a';
+        V4 := 5;
+        V1 := F(C3, V3, V4);  (* LỖI: Truyền 3 tham số nhưng hàm chỉ nhận 2 tham số *)
+     END;
+
+BEGIN
+     CALL P(C1);
+END.  (* Error 4 *)

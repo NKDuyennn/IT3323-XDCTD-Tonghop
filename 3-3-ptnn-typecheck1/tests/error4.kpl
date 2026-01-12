@@ -1,0 +1,12 @@
+PROGRAM ERROR4;
+VAR A : INTEGER;
+    B : INTEGER;
+    C : INTEGER;
+    CH : CHAR;
+BEGIN
+  A := 10;
+  C := 0;
+  CH := 'X';
+  FOR B := 1 TO A DO
+    IF B/2*2 != 0 THEN C := +CH;  (* LỖI: Sửa từ C := C+B thành C := +CH *)
+END.

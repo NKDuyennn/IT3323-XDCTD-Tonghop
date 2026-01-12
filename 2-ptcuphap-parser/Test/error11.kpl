@@ -1,0 +1,13 @@
+PROGRAM TestArguments;
+VAR
+    x : INTEGER;
+
+FUNCTION Add(a: INTEGER; b: INTEGER): INTEGER;
+BEGIN
+    Add := a + b
+END;
+
+BEGIN
+    x := Add(5, );
+    CALL WriteI(x)
+END.

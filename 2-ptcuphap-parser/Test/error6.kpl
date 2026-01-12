@@ -1,0 +1,9 @@
+PROGRAM TestConstant;
+CONST
+    c = +END;
+VAR
+    x : INTEGER;
+BEGIN
+    x := 10;
+    CALL WriteI(x)
+END.

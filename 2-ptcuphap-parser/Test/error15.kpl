@@ -1,0 +1,5 @@
+PROGRAM TestFactor;
+VAR x : INTEGER;
+BEGIN
+    x := - WHILE + 5 ;
+END.

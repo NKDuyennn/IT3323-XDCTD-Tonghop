@@ -1,0 +1,9 @@
+PROGRAM TestType;
+TYPE
+    MyType = PROGRAM;
+VAR
+    x : MyType;
+BEGIN
+    x := 5;
+    CALL WriteI(x)
+END.

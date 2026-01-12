@@ -1,0 +1,6 @@
+PROGRAM Comment;
+(* This is a valid comment *)
+BEGIN
+  (* This comment is not closed
+  x := 10;
+END.

@@ -1,0 +1,9 @@
+PROGRAM TestChar;
+CONST
+    letter = 'ab';
+VAR
+    x : CHAR;
+BEGIN
+    x := letter;
+    CALL WriteC(x)
+END.

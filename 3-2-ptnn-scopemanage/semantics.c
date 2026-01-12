@@ -1,0 +1,98 @@
+/* 
+ * @copyright (c) 2008, Hedspi, Hanoi University of Technology
+ * @author Huu-Duc Nguyen
+ * @version 1.0
+ */
+
+#include <stdlib.h>
+#include <string.h>
+#include "semantics.h"
+#include "error.h"
+
+extern SymTab* symtab;
+extern Token* currentToken;
+
+Object* lookupObject(char *name) {
+  Scope* scope = symtab->currentScope;
+  Object* obj;
+
+  while (scope != NULL) {
+    obj = findObject(scope->objList, name);
+    if (obj != NULL) return obj;
+    scope = scope->outer;
+  }
+  obj = findObject(symtab->globalObjectList, name);
+  if (obj != NULL) return obj;
+  return NULL;
+}
+
+
+void checkFreshIdent(char *name) {
+  if (findObject(symtab->currentScope->objList, name) != NULL)
+    error(ERR_DUPLICATE_IDENT, currentToken->lineNo, currentToken->colNo);
+}
+Object* checkDeclaredIdent(char* name) {
+  Object* obj = lookupObject(name);
+  if (obj == NULL)
+    error(ERR_UNDECLARED_IDENT, currentToken->lineNo, currentToken->colNo);
+  return obj;
+}
+
+Object* checkDeclaredConstant(char* name) {
+  Object* obj = lookupObject(name);
+  if (obj == NULL)
+    error(ERR_UNDECLARED_CONSTANT,currentToken->lineNo, currentToken->colNo);
+  if (obj->kind != OBJ_CONSTANT)
+    error(ERR_INVALID_CONSTANT,currentToken->lineNo, currentToken->colNo);
+
+  return obj;
+}
+
+Object* checkDeclaredType(char* name) {
+  Object* obj = lookupObject(name);
+  if (obj == NULL)
+    error(ERR_UNDECLARED_TYPE,currentToken->lineNo, currentToken->colNo);
+  if (obj->kind != OBJ_TYPE)
+    error(ERR_INVALID_TYPE,currentToken->lineNo, currentToken->colNo);
+
+  return obj;
+}
+Object* checkDeclaredVariable(char* name) {
+  Object* obj = lookupObject(name);
+  if (obj == NULL)
+    error(ERR_UNDECLARED_VARIABLE, currentToken->lineNo, currentToken->colNo);
+  if (obj->kind != OBJ_VARIABLE && obj->kind != OBJ_PARAMETER)
+    error(ERR_INVALID_VARIABLE, currentToken->lineNo, currentToken->colNo);
+  return obj;
+}
+
+Object* checkDeclaredProcedure(char* name) {
+  Object* obj = lookupObject(name);
+  if (obj == NULL)
+    error(ERR_UNDECLARED_PROCEDURE, currentToken->lineNo, currentToken->colNo);
+  if (obj->kind != OBJ_PROCEDURE)
+    error(ERR_INVALID_PROCEDURE, currentToken->lineNo, currentToken->colNo);
+  return obj;
+}
+
+Object* checkDeclaredLValueIdent(char* name) {
+  Object* obj = lookupObject(name);
+  if (obj == NULL)
+    error(ERR_UNDECLARED_IDENT, currentToken->lineNo, currentToken->colNo);
+  
+  // Check if the identifier is a valid lvalue: variable, parameter, or current function name
+  if (obj->kind == OBJ_VARIABLE || obj->kind == OBJ_PARAMETER)
+    return obj;
+  
+  // Check if it's the current function (can assign to function name inside the function)
+  if (obj->kind == OBJ_FUNCTION) {
+    if (obj == symtab->currentScope->owner)
+      return obj;
+    else
+      error(ERR_INVALID_RETURN, currentToken->lineNo, currentToken->colNo);
+  }
+  
+  error(ERR_INVALID_LVALUE, currentToken->lineNo, currentToken->colNo);
+  return NULL;
+}
+
