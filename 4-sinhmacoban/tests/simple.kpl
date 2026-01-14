@@ -1,0 +1,14 @@
+PROGRAM SimpleProc;
+
+VAR x : INTEGER;
+
+PROCEDURE ShowMessage;
+BEGIN
+  CALL WRITEI(100);
+  CALL WRITELN;
+END;
+
+BEGIN
+  x := 5;
+  CALL ShowMessage;
+END.
