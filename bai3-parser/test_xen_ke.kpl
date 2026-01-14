@@ -1,0 +1,11 @@
+PROGRAM TestXenKe;
+CONST X = 5;
+VAR A : INTEGER;
+CONST Y = 10;
+TYPE T = INTEGER;
+VAR B : T;
+CONST Z = 15;
+BEGIN
+  A := X + Y + Z;
+  B := A
+END.

@@ -1,4 +1,5 @@
 (*Thực hiện chương trình với bộ Type_checking để thấy được chương trình chạy thông. Sửa chương trình để gây lỗi khi sử dụng mảng ít chiều hơn so với khai báo. In thông báo lỗi kèm một số là mã ASCII của chữ cái đầu tên bạn cộng với chữ số cuối trong mã sinh viên của bạn. In màn hình chạy thông và màn hình lỗi vào báo cáo. Phân tích tại sao lại có lỗi như vậy?*)
+(*Duyen - 20225618: ASCII('D') + 8 = 68 + 8 = 76*)
 PROGRAM SEMANTICS14;
  VAR N : INTEGER;
     M : INTEGER;
@@ -15,7 +16,7 @@ BEGIN
     FOR I:=0 TO M - 1 DO
       FOR J := 0 TO N - 1 DO
         FOR K := 0 TO P - 1 DO	
-          A(.I.)(.J.)(.K.) := READI;
+          A(.I.)(.J.) := READI;  (*Lỗi: Sử dụng 2 chiều thay vì 3 chiều*)
     S := 0;
     FOR I:=0 TO M - 1 DO
       FOR J := 0 TO N - 1 DO
