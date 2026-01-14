@@ -1,0 +1,9 @@
+PROGRAM EXAMPLE5;
+
+VAR J : INTEGER;
+    I : INTEGER;
+
+BEGIN
+    FOR I := 1 TO 2 DO
+        J := 1;
+END.
