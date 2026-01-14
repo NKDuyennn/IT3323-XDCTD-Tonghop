@@ -6,6 +6,28 @@
 
 #include "charcode.h"
 
+/**
+ * Bảng tra cứu (lookup table) ánh xạ từ mã ASCII sang CharCode
+ * 
+ * Mảng này có 256 phần tử tương ứng với 256 giá trị ASCII có thể có.
+ * Khi đọc một ký tự từ file, ta dùng giá trị ASCII của nó làm index
+ * để tra cứu loại ký tự tương ứng.
+ * 
+ * Ví dụ: charCodes['A'] = CHAR_LETTER, charCodes['3'] = CHAR_DIGIT
+ * 
+ * Cách tổ chức: Mỗi dòng chứa 8 giá trị ASCII liên tiếp
+ *   - Dòng 1 (index 0-7): Các ký tự điều khiển
+ *   - Dòng 2 (index 8-15): Tab(9), Newline(10), Space(13) = CHAR_SPACE
+ *   - Dòng 3 (index 16-23): Các ký tự điều khiển tiếp
+ *   - Dòng 4 (index 24-31): Các ký tự điều khiển
+ *   - Dòng 5 (index 32-39): Space(32), !(33), '(39) và các ký tự đặc biệt
+ *   - Dòng 6 (index 40-47): ((40), )(41), *(42), +(43), ,(44), -(45), .(46), /(47)
+ *   - Dòng 7 (index 48-55): Các chữ số 0-9
+ *   - Dòng 8 (index 56-63): Số 8-9, :;<=>, và ?
+ *   - Dòng 9-11 (index 64-95): Chữ cái IN HOA A-Z
+ *   - Dòng 12-14 (index 96-127): Chữ thường a-z
+ *   - Các dòng còn lại (128-255): Extended ASCII = CHAR_UNKNOWN
+ */
 CharCode charCodes[256] = {
   CHAR_UNKNOWN, CHAR_UNKNOWN, CHAR_UNKNOWN, CHAR_UNKNOWN, CHAR_UNKNOWN, CHAR_UNKNOWN, CHAR_UNKNOWN, CHAR_UNKNOWN,
   CHAR_UNKNOWN, CHAR_SPACE, CHAR_SPACE, CHAR_SPACE, CHAR_SPACE, CHAR_SPACE, CHAR_UNKNOWN, CHAR_UNKNOWN,

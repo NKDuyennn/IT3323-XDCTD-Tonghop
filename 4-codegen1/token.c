@@ -8,6 +8,17 @@
 #include <ctype.h>
 #include "token.h"
 
+/**
+ * Bảng tra cứu các từ khóa của ngôn ngữ KPL
+ * 
+ * Mảng này chứa 20 từ khóa, mỗi từ khóa gồm:
+ *   - string: Chuỗi ký tự của từ khóa (viết HOA)
+ *   - tokenType: Loại token tương ứng
+ * 
+ * Dùng để tra cứu nhanh: khi đọc được một identifier,
+ * ta kiểm tra xem nó có phải từ khóa không bằng cách
+ * so sánh với bảng này
+ */
 struct {
   char string[MAX_IDENT_LEN + 1];
   TokenType tokenType;
@@ -34,6 +45,17 @@ struct {
   {"TO", KW_TO}
 };
 
+/**
+ * So sánh một từ khóa với một chuỗi
+ * 
+ * Hàm này so sánh từng ký tự một cho đến khi:
+ *   - Gặp ký tự khác nhau -> trả về 0 (không bằng)
+ *   - Cả hai chuỗi đều kết thúc '\0' -> trả về 1 (bằng nhau)
+ * 
+ * @param kw - Từ khóa cần so sánh
+ * @param string - Chuỗi cần kiểm tra
+ * @return 1 nếu bằng nhau, 0 nếu khác nhau
+ */
 int keywordEq(char *kw, char *string) {
   while ((*kw != '\0') && (*string != '\0')) {
     if (*kw != *string) break;
@@ -42,6 +64,16 @@ int keywordEq(char *kw, char *string) {
   return ((*kw == '\0') && (*string == '\0'));
 }
 
+/**
+ * Kiểm tra xem một chuỗi có phải là từ khóa không
+ * 
+ * Hàm này duyệt qua bảng keywords và so sánh chuỗi
+ * với từng từ khóa. Nếu tìm thấy, trả về TokenType
+ * của từ khóa đó, ngược lại trả về TK_NONE
+ * 
+ * @param string - Chuỗi cần kiểm tra
+ * @return TokenType của từ khóa nếu tìm thấy, TK_NONE nếu không
+ */
 TokenType checkKeyword(char *string) {
   int i;
   for (i = 0; i < KEYWORDS_COUNT; i++)
@@ -50,6 +82,17 @@ TokenType checkKeyword(char *string) {
   return TK_NONE;
 }
 
+/**
+ * Tạo một token mới
+ * 
+ * Hàm này cấp phát bộ nhớ cho một token mới và
+ * khởi tạo các trường cơ bản (type, lineNo, colNo)
+ * 
+ * @param tokenType - Loại token
+ * @param lineNo - Số dòng
+ * @param colNo - Số cột
+ * @return Con trỏ đến token mới được tạo
+ */
 Token* makeToken(TokenType tokenType, int lineNo, int colNo) {
   Token *token = (Token*)malloc(sizeof(Token));
   token->tokenType = tokenType;
@@ -58,6 +101,20 @@ Token* makeToken(TokenType tokenType, int lineNo, int colNo) {
   return token;
 }
 
+/**
+ * Chuyển đổi TokenType thành chuỗi mô tả
+ * 
+ * Hàm này dùng để in ra thông tin token một cách dễ đọc
+ * cho người dùng, đặc biệt hữu ích khi báo lỗi.
+ * 
+ * Ví dụ:
+ *   - KW_PROGRAM -> "keyword PROGRAM"
+ *   - TK_NUMBER -> "a number"
+ *   - SB_SEMICOLON -> "';'"
+ * 
+ * @param tokenType - Loại token cần chuyển đổi
+ * @return Chuỗi mô tả token
+ */
 char *tokenToString(TokenType tokenType) {
   switch (tokenType) {
   case TK_NONE: return "None";
