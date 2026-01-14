@@ -1,0 +1,9 @@
+PROGRAM CODEGEN3;    
+VAR A : INTEGER; 
+    B: INTEGER; 
+    C: INTEGER;
+BEGIN
+A := 1;
+B := 9;
+IF A != B THEN C := 10 ELSE C := 5;
+END.

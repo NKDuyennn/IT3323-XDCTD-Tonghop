@@ -1,0 +1,10 @@
+Program Parser7; 
+const k=1;   
+var i : Integer;
+const n=7;
+var sum:Integer;
+Begin
+sum:=0;
+  For i := k To n Do
+    sum:=sum+i;
+End. 

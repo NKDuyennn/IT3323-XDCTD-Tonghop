@@ -1,0 +1,25 @@
+(*Thực hiện chương trình với bộ Type_checking để thấy được chương trình chạy thông. Sửa chương trình để gây lỗi khi sử dụng mảng ít chiều hơn so với khai báo. In thông báo lỗi kèm một số là mã ASCII của chữ cái đầu tên bạn cộng với chữ số cuối trong mã sinh viên của bạn. In màn hình chạy thông và màn hình lỗi vào báo cáo. Phân tích tại sao lại có lỗi như vậy?*)
+Program semantics14;
+ Var n : Integer;
+    m : integer;
+    p : integer;
+    a : array(. 10 .) of array (. 10 .) of array (.10.) of integer;
+    i : integer;
+    j : integer;
+    k : integer;
+    s : integer;
+Begin
+    m := READI;
+    n := READI;
+    p := READI;
+    for i:=0 to m - 1 do
+      for j := 0 to n - 1 do
+        for k := 0 to p - 1 do	
+          a(.i.)(.j.)(.k.) := READI;
+    s := 0;
+    for i:=0 to m - 1 do
+      for j := 0 to n - 1 do
+        for k := 0 to p - 1 do	
+          s := s + a(.i.)(.j.)(.k.);
+    call WRITEI(s);
+End. (* Factorial *)
