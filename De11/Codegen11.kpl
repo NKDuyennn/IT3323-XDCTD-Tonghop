@@ -1,0 +1,8 @@
+PROGRAM Codegen11;    
+VAR a : INTEGER; b:INTEGER; c:INTEGER;
+BEGIN
+a:=1;
+b:=9;
+WHILE a!=b DO 
+IF a<b THEN c:=a-b ELSE c:=b-a;
+END.

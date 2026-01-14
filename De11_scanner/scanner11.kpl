@@ -1,0 +1,15 @@
+PROGRAM  SCANNER11;  
+VAR  
+	I : INTEGER;
+     PROD : INTEGER;
+BEGIN
+  PROD = 1;
+  I = 1;
+  WHILE I <= 100 DO
+     BEGIN
+	  IF I== 5 THEN WRITEI(I);
+       PROD = PROD * I;
+       I = I + 1;
+     END;
+END.
+

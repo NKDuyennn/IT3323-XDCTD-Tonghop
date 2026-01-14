@@ -1,0 +1,38 @@
+(*Thuc hien chuong trinh voi bo type_checking2.Neu chuong trinh co loi, in thong bao loi kem ma ASCII cua chu cai dau ten ban va chu so cuoi trong ma sinh vien cua ban. Sua loi va in man hinh thuc hien chuong trinh chay thong. Giai thich tai sao?*)
+Program semantics11;    
+Var n : Integer;
+    s : integer;
+    t : integer;	
+function fsum(n : integer) : integer;
+  var s : integer;
+      i:integer;
+  begin
+    s := 0;
+    for i := 1 to n do
+      s := s + i;
+    call WRITEI(s);
+    call WRITELN;
+    fsum := s + t;
+  end;
+  
+  procedure psum2(n : integer; var s : integer);
+    var i : integer;
+  begin
+    s := 0;
+    for i := 1 to n do
+      s := s + i;
+    s:= s + t;  
+  end;
+procedure psum1(n : integer);
+    var i : integer;
+   begin
+    call psum2(n,s);
+   end;
+Begin
+   t := READI;
+   n := READI;
+   call psum1(n);
+   call WRITEI(s);
+   call WRITEI(fsum(n));
+   call WRITELN;
+End. 
